@@ -1,0 +1,292 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>联展汽车零部件官方网站</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=1200, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="static/css/banner-j.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/main.css" />
+
+		<!--<div th:replace="include/back/adminHeader::html('用户管理')" ></div>-->
+
+
+
+<!--
+		<script src="js/jquery/2.0.0/jquery.min.js"></script>
+		<link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+		<script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+		<script src="js/vue/2.5.16/vue.min.js"></script>
+		<script src="js/axios/0.17.1/axios.min.js"></script>
+		<script src="js/moment/2.22.2/moment.js"></script> -->
+
+		<!-- vue.js 格式化日期用的 -->
+
+
+		<style>
+			.pro_li_1_left {
+				float: left;
+				width: 50%;
+				height: 380px;
+				/*background-color: red;*/
+				border: 1px solid #888888;
+			}
+			.pro_li_1_right {
+				margin-left: 50;
+				width: 50;
+				height: 380px;
+				/*background-color: black;*/
+				border: 1px solid #888888;
+				border-left: 0;
+			}
+			.pro_cp h1{
+				text-align: center;
+				line-height: 60px;
+			}
+			.pro_cp_img {
+				width: 100%;
+			}
+			.pro_cp_img img {
+				margin-left: 10%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--nav-->
+		<div class="navbar">
+			<div class="intrbar clearfix">
+				<div class="topbar">
+					<div>
+						<p>
+							欢迎光临联展汽车零部件官方网站
+						</p>
+						<p>
+							<a href="tel:0512-57995109">联系电话：0755-84531599</a>
+						</p>
+					</div>
+				</div>
+				<div class="logobar clearfix">
+					<div class="logo">
+						<img src="static/images/logo.jpg" />
+					</div>
+					<div class="phonebar">
+						<img src="static/images/tel.png" />
+						<div>
+							<p>全国免费服务热线:</p>
+							<p>0755-84531599</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nav">
+				<ul class="clearfix">
+					<li class="active">
+						<a href="/">首页</a>
+					</li>
+					<li>
+						<a href="back_about">关于我们</a>
+					</li>
+					<li>
+						<a href="back_products">产品汇集</a>
+					</li>
+					<li>
+						<a href="back_news">新闻中心</a>
+					</li>
+					<li>
+						<a href="back_recruit">人才招聘</a>
+					</li>
+					<li>
+						<a href="back_contact">联系我们</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--banner-->
+		<div id="wrapper">
+			<div class="fullwidthbanner-container">
+				<div class="fullwidthbanner">
+					<ul>
+						<li data-transition="3dcurtain-horizontal" data-slotamount="15" data-masterspeed="300">
+							<img style="width: 100%;height:50%;" src="static/images/swiper1.png" alt="" />
+						</li>
+						<li data-transition="3dcurtain-vertical" data-slotamount="15" data-masterspeed="300" data-link="#">
+							<img src="static/images/swiper2.png" alt="" />
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--pro-li-->
+		<div class="pro-li">
+			<section class="title">
+				<div>
+					<h2>产品分类</h2>
+					<p>PRODUCT CLASSIFICATION</p>
+				</div>
+			</section>
+			<div class="pro_cp">
+				<a style="color: #333;" href="back_products">
+					<div class="pro_li_1_left">
+						<h1>冲压产品</h1>
+						<div class="pro_cp_img" style="width: 80%;height: 300px;">
+							<img style="width: 100%;height: 95%;" src="static/images/26.jpg" />
+						</div>
+					</div>
+				</a>
+				<a style="color: #333;" href="back_banJin">
+
+					<div class="pro_li_1_right">
+
+						<h1 >钣金产品</h1>
+						<div class="pro_cp_img" style="float:right;width: 30%;height: 280px;margin-right: 150px;">
+							<img style="width: 100%;height: 100%;" src="static/images/1.3.jpg"  />
+						</div>
+
+
+					</div>
+				</a>
+			</div>
+		</div>
+		<!--about-->
+		<div class="about">
+			<section class="title">
+				<div>
+					<h2>关于我们</h2>
+				</div>
+				<p>ABOUT US</p>
+			</section>
+			<div class="ab-area clearfix">
+				<img src="static/images/ab.jpg" />
+				<div class="clearfix">
+					<div class="ab-con">
+						<h2>联展精密（惠州）部件有限公司</h2>
+						<p>
+							联展精密部件（惠州）有限公司位于广东省大亚湾精经济开发区，冲压一期投资3000多万元，二期铸造、机械加工投资5000多万元，总占地80多亩。具有钣金冲压加工、五金模具制造、机械加工等综合性生产能力，是国内著名汽车公司的战略联盟企业，具有5年汽车零部件生产加工方面的经验，年冲压产能达3000万冲次以上。是华南地区设备齐全，功能完备的冲压生产基地之一。
+						</p>
+					</div>
+					<div class="ab-btn">
+						<a href="back_about">查看更多</a>
+						<a href="back_contact">联系我们</a>
+					</div>
+				</div>
+			</div>
+			<div class="ab-advantage">
+				<ul class="clearfix">
+					<li>
+						<img src="static/images/ad1.png" />
+						<h3>质量</h3>
+						<p>质量为先</p>
+					</li>
+					<li>
+						<img src="static/images/ad2.png" />
+						<h3>效益</h3>
+						<p>高效工作</p>
+					</li>
+					<li>
+						<img src="static/images/ad3.png" />
+						<h3>诚信</h3>
+						<p>诚信经营</p>
+					</li>
+					<li>
+						<img src="static/images/ad4.png" />
+						<h3>资质</h3>
+						<p>10年资质</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--news-->
+		<div class="news">
+			<section class="title">
+				<div>
+					<h2>新闻推荐</h2>
+				</div>
+				<p>NEWS</p>
+			</section>
+			<div class="news-class clearfix">
+				<div class="news-cp">
+					<div class="clearfix">
+						<h3>公司动态​​</h3>
+						<img src="static/images/pic1.png" />
+						<ul>
+							<li>
+								<a href="back_news">
+									<span>2015-11-27</span>
+									<h4>深圳钣金协会2015年度年终大会筹备通知</h4>
+									<p>各会员单位:深圳市钣金加工行业协会2015年年终大会现进入筹备阶段，目前就有关事宜通知如下：一、大会文艺节目征集本届大会文艺节目将继续采用向各会员单位征集的方式，希望各会员单位能积极参与和准备。因为有你们，协会一年一度的会员大联欢，才会更加完美。‍（注：各企业选送的优秀节目请于12月22日前报于协会秘书处筛选。‍）</p>
+								</a>
+							</li>
+							<li>
+								<a href="back_news">
+									<span>2015-11-7</span>
+									<h4>生产紧锣密鼓进行着------出货</h4>
+									<p>经过一段时间的井井有条的生产（数冲、折弯、压铆、攻牙、喷涂、组装），这些大家伙（机柜、电柜）正在装车准备出发运往客户处。</p>
+								</a>
+							</li>
+						</ul>
+						<a class="more" href="back_news">查看更多</a>
+					</div>
+				</div>
+				<div class="news-hy">
+					<div class="clearfix">
+						<h3>行业资讯</h3>
+						<img src="static/images/pic2.png" />
+						<ul>
+							<li>
+								<a href="back_lines">
+									<span>2013-3-18</span>
+									<h4>热烈祝贺联展精密顺利通过ISO9001质量认证体系</h4>
+									<p>近期，惠州市联展汽车零部件有限公司获北京博天亚认证有限公司颁发的ISO9001:2008质量管理证书。公司于2011年建立体系并持续运行，于2012年3月22日顺利通过ISO9001:2008质量管理体系认证。ISO9001是用于证实组织具有提供满足顾客要求和适用法律要求的产品的能力，目的在于增进顾客满意。凡是通过认证的企业，在各项管理系统整合上已达到了国际标准，表明企业能持续稳定地向顾客提供预期和满意的合格产品。惠州市联展汽车零部件有限公司站在客户的角度，追求技术创新、持续品质提升、超越顾客期望、实现联展理想。</p>
+								</a>
+							</li>
+							<li>
+								<a href="back_lines">
+									<span>2013-3-18</span>
+									<h4>长安福特将投6亿美元 扩大重庆基地产能</h4>
+									<p>长安福特马自达汽车宣布4月5日将投资6亿美元扩大其重庆生产基地产能。扩产后，长安福特马自达重庆工厂年产能将提升35万辆，其在中国的年总产能将超过95万辆。重庆将成为福特在密西根以外的最大生产基地。目前，长安福特马自达汽车在重庆拥有两个整车生产厂，以及一个正在建设的发动机工厂和一个变速器工厂。扩产建设项目近期将正式动工，首辆新车预计将于2014年下半年下线。</p>
+								</a>
+							</li>
+						</ul>
+						<a class="more" href="back_lines">查看更多</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="space"></div>
+		<footer>
+			<div class="footer-nav">
+				<ul class="clearfix">
+					<li>
+						<a href="/">网站首页</a>
+					</li>
+					<li>
+						<a href="back_about">关于我们</a>
+
+					</li>
+					<li>
+						<a href="back_products">产品中心</a>
+					</li>
+					<li>
+						<a href="back_news">新闻中心</a>
+					</li>
+					<li>
+						<a href="back_recruit">人才招聘</a>
+					</li>
+					<li>
+						<a href="back_contact">联系我们</a>
+					</li>
+				</ul>
+				<p>
+					联展精密部件有限公司版权所有 Copyright&copy;2016 <a href="http://www.beian.miit.gov.cn">粤ICP备20006657号</a >
+				</p>
+			</div>
+		</footer>
+		<script type="text/javascript" src="static/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="static/js/jquery.banner.revolution.min.js"></script>
+		<script type="text/javascript" src="static/js/banner.js"></script>
+		<script type="text/javascript" src="static/js/main.js"></script>
+
+	</body>
+
+</html>

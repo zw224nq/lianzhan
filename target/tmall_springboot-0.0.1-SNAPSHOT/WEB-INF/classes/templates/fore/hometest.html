@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="include/fore/headerTest::html">
+
+    <title>机械公司</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1200, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="static/css/banner-j.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/main.css" />
+
+    <!-- <div th:replace="include/fore/header::html"></div>-->
+
+    <!--<head th:include="include/fore/header::html" ></head>-->
+    <!-- <div th:replace="include/fore/header::html" ></div>-->
+    <!--<div th:replace="include/back/adminHeader::html('用户管理')" ></div>
+
+    "-->
+
+</head>
+
+
+
+
+<body>
+<div id="workingArea">
+<div class="navbar">
+
+    <div class="intrbar clearfix">
+        <div class="topbar">
+            <div>
+                <p>
+                    欢迎光临联展汽车零部件官方网站
+                </p>
+                <p>
+                    <a href="tel:0512-57995109">联系电话：0755-84531599</a>
+                </p>
+            </div>
+        </div>
+        <div class="logobar clearfix">
+            <div class="logo">
+                <img src="static/images/logo.jpg" />
+            </div>
+            <div class="phonebar">
+                <img src="static/images/tel.png" />
+                <div>
+                    <p>全国免费服务热线:</p>
+                    <p>0755-84531599</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav">
+        <ul class="clearfix">
+            <li>
+                <a href=" /tmall_springboot">首页</a>
+            </li>
+            <li>
+                <a href="back_about">关于我们</a>
+            </li>
+            <li class="active">
+                <a href="back_products">产品汇集</a>
+            </li>
+            <li >
+                <a href="back_news">新闻中心</a>
+            </li>
+            <li>
+                <a href="back_recruit">人才招聘</a>
+            </li>
+            <li>
+                <a href="back_contact">联系我们</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="wrapper">
+    <div class="fullwidthbanner-container">
+        <div class="fullwidthbanner">
+            <img src="static/images/swiper2.png" alt="" style="width:100%;height: 400px;"/>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="pro-re clearfix">
+    <li class="pg-nav">
+        <div >
+            <h3>PRODUCTS</h3>
+            <p>产品中心</p>
+        </div>
+
+        <ul>
+         <li class="active">
+                <div th:replace="include/fore/home/categoryMenuTest::html" ></div>
+         </li>
+
+            <li><a href="category?cid=118"></a>領悟</li>
+          <!--  <li class="active"><a href="back_recruit">衝壓產品</a></li>
+            <li><a href="back_accept">钣金产品</a></li>-->
+
+
+        </ul>
+
+    </div>
+
+    <div class="pg-area">
+        <div class="pg-topbar">
+            <h3>当前位置：<a href="/tmall_springboot">网站首页</a>&nbsp;/&nbsp;产品中心</h3>
+        </div>
+        <ul class="prore-con clearfix">
+            <!--<li>
+                <div>
+                    <img style="width: 150px;height: 100px;" src="static/images/10.jpg" />
+                    <div class="prore-more">
+                        <p>事业部冲压产品</p>
+                        <a href="products-detail.html">查看详情+</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img style="width: 150px;height: 100px;" src="static/images/18.jpg/">
+                    <div class="prore-more">
+                        <p>事业部冲压产品</p>
+                        <a href="products-detail1.html">查看详情+</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img style="width: 150px;height: 100px;" src="static/images/2.jpg" />
+                    <div class="prore-more">
+                        <p>事业部冲压产品</p>
+                        <a href="products-detail2.html">查看详情+</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img style="width: 150px;height: 100px;" src="static/images/26.jpg" />
+                    <div class="prore-more">
+                        <p>事业部冲压产品</p>
+                        <a href="products-detail3.html">查看详情+</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img style="width: 150px;height: 100px;" src="static/images/38.jpg" />
+                    <div class="prore-more">
+                        <p>事业部冲压产品</p>
+                        <a href="products-detail4.html">查看详情+</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img style="width: 150px;height: 100px;" src="static/images/46.jpg" />
+                    <div class="prore-more">
+                        <p>事业部冲压产品</p>
+                        <a href="products-detail5.html">查看详情+</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img style="width: 150px;height: 100px;" src="static/images/50.jpg" />
+                    <div class="prore-more">
+                        <p>事业部冲压产品</p>
+                        <a href="products-detail3.html">查看详情+</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img style="width: 150px;height: 100px;" src="static/images/53.jpg" />
+                    <div class="prore-more">
+                        <p>事业部冲压产品</p>
+                        <a href="products-detail4.html">查看详情+</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img style="width: 150px;height: 100px;" src="static/images/10.jpg" />
+                    <div class="prore-more">
+                        <p>事业部冲压产品</p>
+                        <a href="products-detail5.html">查看详情+</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img style="width: 150px;height: 100px;" src="static/images/50.jpg" />
+                    <div class="prore-more">
+                        <p>事业部冲压产品</p>
+                        <a href="products-detail3.html">查看详情+</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img style="width: 150px;height: 100px;" src="static/images/53.jpg" />
+                    <div class="prore-more">
+                        <p>事业部冲压产品</p>
+                        <a href="products-detail4.html">查看详情+</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img style="width: 150px;height: 100px;" src="static/images/10.jpg" />
+                    <div class="prore-more">
+                        <p>事业部冲压产品</p>
+                        <a href="products-detail5.html">查看详情+</a>
+                    </div>
+                </div>
+            </li>-->
+        </ul>
+    </div>
+    <ul></ul>
+
+
+</div>
+
+
+
+
+
+
+    <!-- top是标签  search是搜索栏目  footer是脚下-->
+    <!--  <div th:replace="include/fore/top::html" ></div>
+        <div th:replace="include/fore/search::html" ></div>-->
+    <div th:replace="include/fore/home/homePage::html" ></div>
+
+    <!--<div th:replace="include/fore/footer::html" ></div>-->
+</div>
+
+<!--<div th:replace="include/back/backFooter::html" ></div>-->
+</body>
+</html>

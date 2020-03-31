@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="include/admin/adminHeader::html('编辑产品')" ></head>
+<body>
+<div th:replace="include/admin/adminNavigator::html" ></div>
+<script>
+    $(function() {
+        var data4Vue = {
+            uri: 'companySummarys',
+            listURL: 'admin_companySummary_list',
+            bean: '',
+            category: ''
+        };
+
+        /* addListtenr();*/
+
+
+
+
+        //ViewModel
+        var vue = new Vue({
+            el: '#workingArea',
+            data: data4Vue,
+            mounted: function () { //mounted　表示这个 Vue 对象加载成功了
+                this.get();
+            },
+            methods: {
+
+                get: function () {
+                    var id = getUrlParms("id");
+                    var url = this.uri + "/" + id;
+                    axios.get(url).then(function (response) {
+                        vue.bean = response.data;
+
+                    })
+                },
+                update: function () {
+
+                    var url = this.uri;
+                    axios.put(url, vue.bean).then(function (response) {
+                        location.href = vue.listURL;
+                    });
+                }
+            }
+        });
+    });
+
+    /*
+        function addListtenr(){
+            $("textarea").each(function(index) {
+                $("textarea")[index].addEventListener('keydown',function(e){
+                    if(e.keyCode!=13){
+                        return;
+                    }else{//当按键输入为回车时，执行下列操作
+                        event.preventDefault();//为了兼容IE8
+                        e.returnValue = false;
+                        e = $(this).val()+'\n';//手动增加换行符
+                        $(this).val(e).focus();//定义焦点还是在这个控件上
+                    }
+                });
+            });
+        }*/
+
+
+
+</script>
+
+
+
+
+
+<div id="workingArea">
+
+    <ol class="breadcrumb">
+        <li><a href="admin_companySummary_list">公司概况</a></li>
+
+        <li class="active">修改信息</li>
+    </ol>
+
+
+    <div>
+        <table class="editTable" style="text-align: center">
+            <tr>
+
+                <td>
+                    <textarea  id="aidChildBirthDiagnosisOther" rows="20px" cols="100px" @keyup.enter="" v-model.trim="bean.content"></textarea>
+
+
+
+                </td>
+            </tr>
+
+
+            <tr class="submitTR">
+                <td colspan="2" align="center">
+                    <input type="hidden" name="id"   v-model.trim="bean.id" >
+                    <a href="#nowhere" class="btn btn-success" @click="update">提 交</a>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+
+
+
+
+
+<div th:replace="include/admin/adminFooter::html" ></div>
+</body>
+</html>
+
+
+
+
+

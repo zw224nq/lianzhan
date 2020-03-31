@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="include/fore/header::html">
+
+
+
+   <!-- <div th:replace="include/fore/header::html"></div>-->
+
+    <!--<head th:include="include/fore/header::html" ></head>-->
+   <!-- <div th:replace="include/fore/header::html" ></div>-->
+    <!--<div th:replace="include/back/adminHeader::html('用户管理')" ></div>
+
+    "-->
+
+</head>
+
+
+
+
+<body>
+<!--
+<div class="navbar">
+
+
+/div>
+-->
+
+
+<!--<div th:replace="include/fore/home/homePage::html" ></div>-->
+
+<!--<div th:replace="include/back/backFooter::html" ></div>-->
+
+
+
+
+<div id="workingArea">
+    <!-- top是标签  search是搜索栏目  footer是脚下-->
+  <div th:replace="include/fore/top::html" ></div>
+    <div th:replace="include/fore/search::html" ></div>
+    <div th:replace="include/fore/home/homePage::html" ></div>
+
+<div th:replace="include/fore/footer::html" ></div>
+</div>
+
+</body>
+</html>

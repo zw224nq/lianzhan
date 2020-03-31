@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>联展汽车零部件官方网站</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=1200, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="static/css/banner-j.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/main.css" />
+
+		<div th:replace="include/back/adminHeader::html('用户管理')" ></div>
+	</head>
+
+	<script>
+        $(function(){
+            var data4Vue = {
+                uri: 'news',
+                listURL:'admin_new_list',
+                bean: '',
+                category:''
+            };
+
+            //ViewModel
+            var vue = new Vue({
+                el: '#workingArea',
+                data: data4Vue,
+                mounted:function(){ //mounted　表示这个 Vue 对象加载成功了
+                    this.get();
+                },
+                methods: {
+
+                    get:function(){
+                        var id = getUrlParms("id");
+                        var url = this.uri+"/"+id;
+                        axios.get(url).then(function(response) {
+                            vue.bean = response.data;
+
+                        })
+                    },
+                    update:function () {
+
+                        var url = this.uri;
+                        axios.put(url,vue.bean).then(function(response){
+                            location.href=vue.listURL;
+                        });
+                    }
+                }
+            });
+        });
+	</script>
+
+	<body>
+		<!--nav-->
+
+		<div class="navbar">
+
+			<div class="intrbar clearfix">
+				<div class="topbar">
+					<div>
+						<p>
+							欢迎光临联展汽车零部件官方网站
+						</p>
+						<p>
+							<a href="tel:0512-57995109">联系电话：0755-84531599</a>
+						</p>
+					</div>
+				</div>
+				<div class="logobar clearfix">
+					<div class="logo">
+						<img src="static/images/logo.jpg" />
+					</div>
+					<div class="phonebar">
+						<img src="static/images/tel.png" />
+						<div>
+							<p>全国免费服务热线:</p>
+							<p>0755-84531599</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nav">
+				<ul class="clearfix">
+					<li>
+						<a href="/ ">首页</a>
+					</li>
+					<li>
+						<a href="back_about">关于我们</a>
+					</li>
+					<li>
+						<a href="back_products">产品汇集</a>
+					</li>
+					<li class="active">
+						<a href="back_news">新闻中心</a>
+					</li>
+					<li>
+						<a href="back_recruit">人才招聘</a>
+					</li>
+					<li>
+						<a href="back_contact">联系我们</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--banner-->
+		<div id="wrapper">
+			<div class="fullwidthbanner-container">
+				<div class="fullwidthbanner">
+					<img src="static/images/swiper2.png" alt="" style="width:100%;height: 400px;"/>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="pro-re clearfix">
+			<div class="pg-nav">
+				<div>
+					<h3>NEWS</h3>
+					<p>新闻中心</p>
+				</div>
+				<ul>
+					<li class="active"><a href="back_news">行业资讯</a></li>
+					<li><a href=" back_lines">企业新闻</a></li>
+				</ul>
+			</div>
+			<div class="pg-area">
+				<div class="pg-topbar">
+					<h3>当前位置：<a href="/">网站首页</a>&nbsp;/&nbsp;资讯中心</h3>
+				</div>
+				<div class="nepg-con">
+					
+					<div class="news-detail" id="workingArea">
+						<h2>{{bean.title}}</h2>
+						<span>发布时间：{{bean.time}}</span>
+						<div >
+
+						 <textarea  style="border: none;color: #333" rows="26px" cols="116px">
+            {{bean.content}}
+                        </textarea>
+
+
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+
+		</div>
+
+		<div th:replace="include/back/backFooter::html" ></div>
+
+
+		<script type="text/javascript" src="static/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="static/js/jquery.banner.revolution.min.js"></script>
+		<script type="text/javascript" src="static/js/banner.js"></script>
+		<script type="text/javascript" src="static/js/main.js"></script>
+
+	</body>
+
+</html>

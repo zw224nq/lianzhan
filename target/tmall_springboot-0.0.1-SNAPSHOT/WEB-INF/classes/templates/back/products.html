@@ -1,0 +1,303 @@
+	<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+	<head>
+		<title>联展汽车零部件官方网站</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=1200, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="static/css/banner-j.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/main.css" />
+
+		<!--<head th:include="include/fore/header::html" ></head>-->
+		<!--<div th:replace="include/fore/header::html" ></div>-->
+		<!--<div th:replace="include/back/adminHeader::html('用户管理')" ></div>-->
+		<div th:replace="include/back/adminHeader::html('用户管理')" ></div>
+
+
+
+	</head>
+	<script>
+        $(function(){
+            var data4Vue = {
+                uri:'categories',
+                beans: [],
+                bean: { id: 0, name: ''},
+                pagination:{},
+                file: null
+            };
+
+            //ViewModel
+            var vue = new Vue({
+                el: '#workingArea',
+                data: data4Vue,
+                mounted:function(){ //mounted　表示这个 Vue 对象加载成功了
+                    this.list(0);
+                },
+                methods: {
+                    list:function(start){
+                        var url =  this.uri+ "?start="+start;
+                        axios.get(url).then(function(response) {
+                            vue.pagination = response.data;
+                            vue.beans = response.data.content	;
+                        });
+                    },
+                    add: function () {
+                        if(!checkEmpty(this.bean.name, "分类名称"))
+                            return;
+                        if(!checkEmpty(this.file, "分类图片"))
+                            return;
+                        var url = this.uri;
+
+                        //axios.js 上传文件要用 formData 这种方式
+                        var formData = new FormData();
+                        formData.append("image", this.file);
+                        formData.append("name", this.bean.name);
+                        axios.post(url,formData).then(function(response){
+                            vue.list(0);
+                            vue.bean = { id: 0, name: '', hp: '0'};
+                            $("#categoryPic").val('');
+                            vue.file = null;
+                        });
+                    },
+                    deleteBean: function (id) {
+                        if(!checkDeleteLink())
+                            return;
+                        var url = this.uri+"/"+id;
+                        axios.delete(url).then(function(response){
+                            if(0!=response.data.length){
+                                alert(response.data);
+                            }
+                            else{
+                                vue.list(0);
+                            }
+                        });
+                    },
+                    getFile: function (event) {
+                        this.file = event.target.files[0];
+                    },
+                    jump: function(page){
+                        jump(page,vue); //定义在adminHeader.html 中
+                    },
+                    jumpByNumber: function(start){
+                        jumpByNumber(start,vue);
+                    }
+                }
+            });
+        });
+
+	</script>
+
+
+
+
+	<body>
+	<!--nav-->
+	<div class="navbar">
+
+		<div class="intrbar clearfix">
+			<div class="topbar">
+				<div>
+					<p>
+						欢迎光临联展汽车零部件官方网站
+					</p>
+					<p>
+						<a href="tel:0512-57995109">联系电话：0755-84531599</a>
+					</p>
+				</div>
+			</div>
+			<div class="logobar clearfix">
+				<div class="logo">
+					<img src="static/images/logo.jpg" />
+				</div>
+				<div class="phonebar">
+					<img src="static/images/tel.png" />
+					<div>
+						<p>全国免费服务热线:</p>
+						<p>0755-84531599</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="nav">
+			<ul class="clearfix">
+				<li>
+					<a href=" /">首页</a>
+				</li>
+				<li>
+					<a href="back_about">关于我们</a>
+				</li>
+				<li class="active">
+					<a href="back_products">产品汇集</a>
+				</li>
+				<li >
+					<a href="back_news">新闻中心</a>
+				</li>
+				<li>
+					<a href="back_recruit">人才招聘</a>
+				</li>
+				<li>
+					<a href="back_contact">联系我们</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--banner-->
+	<div id="wrapper">
+		<div class="fullwidthbanner-container">
+			<div class="fullwidthbanner">
+				<img src="static/images/swiper2.png" alt="" style="width:100%;height: 400px;"/>
+			</div>
+		</div>
+	</div>
+
+	<!--banner-->
+
+		<div class="pro-re clearfix" id="workingArea"  >
+			<div class="pg-nav" >
+				<div>
+					<h3>PRODUCTS</h3>
+					<p>产品中心</p>
+				</div>
+				<ul  >
+				<!--	<li v-for="(bean,index) in beans ">
+						<a  :href="'back_product_list?cid=' + bean.id ">{{bean.name}}</a>
+
+						<a  src="'img/category/'+bean.id+'.jpg'">{{bean.name}}</a>&ndash;&gt;
+
+					</li>-->
+				   <li class="active"><a href="back_products">冲压产品</a></li>
+					<li><a href="back_banJin">钣金产品</a></li>
+
+				</ul>
+			</div>
+			<div class="pg-area">
+				<div class="pg-topbar">
+					<h3>当前位置：<a href="/">网站首页</a>&nbsp;/&nbsp;产品中心</h3>
+				</div>
+				<ul class="prore-con clearfix">
+
+
+					<li>
+						<div>
+							<img style="width: 150px;height: 100px;" src="static/images/10.jpg" />
+							<div class="prore-more">
+								<p>事业部冲压产品</p>
+								<a href="detail1">查看详情+</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div>
+							<img style="width: 150px;height: 100px;" src="static/images/18.jpg/">
+							<div class="prore-more">
+								<p>事业部冲压产品</p>
+								<a href="detail2">查看详情+</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div>
+							<img style="width: 150px;height: 100px;" src="static/images/2.jpg" />
+							<div class="prore-more">
+								<p>事业部冲压产品</p>
+								<a href="detail3">查看详情+</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div>
+							<img style="width: 150px;height: 100px;" src="static/images/26.jpg" />
+							<div class="prore-more">
+								<p>事业部冲压产品</p>
+								<a href="detail4">查看详情+</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div>
+							<img style="width: 150px;height: 100px;" src="static/images/38.jpg" />
+							<div class="prore-more">
+								<p>事业部冲压产品</p>
+								<a href="detail5">查看详情+</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div>
+							<img style="width: 150px;height: 100px;" src="static/images/46.jpg" />
+							<div class="prore-more">
+								<p>事业部冲压产品</p>
+								<a href="detail6">查看详情+</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div>
+							<img style="width: 150px;height: 100px;" src="static/images/50.jpg" />
+							<div class="prore-more">
+								<p>事业部冲压产品</p>
+								<a href="detail7">查看详情+</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div>
+							<img style="width: 150px;height: 100px;" src="static/images/53.jpg" />
+							<div class="prore-more">
+								<p>事业部冲压产品</p>
+								<a href="detail8">查看详情+</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div>
+							<img style="width: 150px;height: 100px;" src="static/images/10.jpg" />
+							<div class="prore-more">
+								<p>事业部冲压产品</p>
+								<a href="detail9">查看详情+</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div>
+							<img style="width: 150px;height: 100px;" src="static/images/60.jpg" />
+							<div class="prore-more">
+								<p>事业部冲压产品</p>
+								<a href="detail10">查看详情+</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div>
+							<img style="width: 150px;height: 100px;" src="static/images/61.jpg" />
+							<div class="prore-more">
+								<p>事业部冲压产品</p>
+								<a href="detail11">查看详情+</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div>
+							<img style="width: 150px;height: 100px;" src="static/images/62.jpg" />
+							<div class="prore-more">
+								<p>事业部冲压产品</p>
+								<a href="detail12">查看详情+</a>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<ul></ul>
+
+		</div>
+	<div th:replace="include/back/backFooter::html" ></div>
+
+	<script type="text/javascript" src="static/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="static/js/jquery.banner.revolution.min.js"></script>
+	<script type="text/javascript" src="static/js/banner.js"></script>
+	<script type="text/javascript" src="static/js/main.js"></script>
+
+	</body>
+
+</html>

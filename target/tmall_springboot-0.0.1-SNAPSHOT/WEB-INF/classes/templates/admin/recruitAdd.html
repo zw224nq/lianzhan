@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="include/admin/adminHeader::html('编辑分类')" ></head>
+<body>
+<!--<div th:replace="include/admin/adminNavigator::html" ></div>-->
+<script>
+    $(function(){
+        var data4Vue = {
+            uri:'recruits',
+            beans: [],
+            bean: { id: 0, name: ''},
+            pagination:{},
+            file: null
+        };
+
+        //ViewModel
+        var vue = new Vue({
+            el: '#workingArea',
+            data: data4Vue,
+            mounted:function(){ //mounted　表示这个 Vue 对象加载成功了
+                this.list(0);
+            },
+            methods: {
+                list:function(start){
+                    var url =  this.uri+ "?start="+start;
+                    axios.get(url).then(function(response) {
+                        vue.pagination = response.data;
+                        vue.beans = response.data.content	;
+                    });
+                },
+                add: function () {
+                    alert("添加成功");
+                  if(!checkEmpty(this.bean.position, "岗位"))
+                        return;
+                    if(!checkEmpty(this.bean.demand, "要求"))
+                        return;
+
+                    var url = this.uri;
+
+                    //axios.js 上传文件要用 formData 这种方式
+                    var formData = new FormData();
+                    formData.append("image", this.file);
+                    formData.append("position", this.bean.position);
+                    formData.append("demand", this.bean.demand);
+                    formData.append("time", this.bean.time);
+                    formData.append("name", this.bean.name);
+                    formData.append("mail", this.bean.mail);
+                    formData.append("phone", this.bean.phone);
+
+                    axios.post(url,formData).then(function(response){
+                        vue.list(0);
+                        vue.bean = { id: 0, name: '', hp: '0'};
+                        $("#categoryPic").val('');
+                        vue.file = null;
+                    });
+                },
+                getFile: function (event) {
+                    this.file = event.target.files[0];
+                },
+                jump: function(page){
+                    jump(page,vue); //定义在adminHeader.html 中
+                },
+                jumpByNumber: function(start){
+                    jumpByNumber(start,vue);
+                }
+            }
+        });
+    });
+</script>
+
+<div id="workingArea">
+
+    <ol class="breadcrumb">
+        <li><a href="admin_recruit_list">招聘信息</a></li>
+
+        <li class="active">新增招聘</li>
+    </ol>
+
+
+
+
+        <div class="con-message" style="margin-left: 480px">
+
+            <form>
+                <input style="width:400px;height: 40px;" type="position" v-model.trim="bean.position" placeholder="应聘岗位"/><br><br>
+                <input  style="width:400px; height: 40px;" type="name" maxlength="11" v-model.trim="bean.time" placeholder="发布时间" /><br><br>
+                <textarea style="width:400px; height: 100px;"  v-model.trim="bean.demand" placeholder="岗位要求"></textarea><br><br>
+
+                <input style="width:400px; height: 40px;" type="name" v-model.trim="bean.name" placeholder="联系人"/><br><br>
+                <input style="width:400px; height: 40px;" type="age" v-model.trim="bean.phone"  placeholder="联系电话"/><br><br>
+                <input style="width:400px; height: 40px;" type="sex"  v-model.trim="bean.mail" placeholder="邮箱"/><br><br>
+
+            </form>
+            <td colspan="2" align="center">
+                <a href="#nowhere"  @click="add" class="btn btn-success">提交</a>
+            </td>
+
+
+        </div>
+
+
+
+    <div th:replace="include/admin/adminFooter::html" ></div>
+</div>
+</body>
+</html>
+
+
+
+
+
+

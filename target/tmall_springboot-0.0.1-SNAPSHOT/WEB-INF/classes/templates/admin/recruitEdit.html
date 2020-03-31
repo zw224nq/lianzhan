@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="include/admin/adminHeader::html('编辑产品')" ></head>
+<body>
+<div th:replace="include/admin/adminNavigator::html" ></div>
+<script>
+    $(function(){
+        var data4Vue = {
+            uri: 'recruits',
+            listURL:'admin_recruit_list',
+            bean: '',
+            category:''
+        };
+
+        //ViewModel
+        var vue = new Vue({
+            el: '#workingArea',
+            data: data4Vue,
+            mounted:function(){ //mounted　表示这个 Vue 对象加载成功了
+                this.get();
+            },
+            methods: {
+
+                get:function(){
+                    var id = getUrlParms("id");
+                    var url = this.uri+"/"+id;
+                    axios.get(url).then(function(response) {
+                        vue.bean = response.data;
+
+                    })
+                },
+                update:function () {
+
+                    var url = this.uri;
+                    axios.put(url,vue.bean).then(function(response){
+                        location.href=vue.listURL;
+                    });
+                }
+            }
+        });
+    });
+</script>
+
+
+
+<div id="workingArea">
+
+    <ol class="breadcrumb">
+        <li><a href="admin_recruit_list">联系我们</a></li>
+
+        <li class="active">修改信息</li>
+    </ol>
+
+
+    <div class="con-message" style="margin-left: 480px">
+
+
+        <form>
+            <input style="width:400px;height: 50px;" type="position" v-model.trim="bean.position" placeholder="应聘岗位"/><br><br>
+            <input  style="width:400px; height: 50px;" type="name" maxlength="11" v-model.trim="bean.time" placeholder="发布时间" /><br><br>
+            <textarea style="width:400px; height: 100px;"  v-model.trim="bean.demand" placeholder="岗位要求"></textarea><br><br>
+
+            <input style="width:400px; height: 50px;" type="name" v-model.trim="bean.name" placeholder="联系人"/><br><br>
+            <input style="width:400px; height: 50px;" type="age" v-model.trim="bean.phone"  placeholder="联系电话"/><br><br>
+            <input style="width:400px; height: 50px;" type="sex"  v-model.trim="bean.mail" placeholder="邮箱"/><br><br>
+
+        </form>
+        <td colspan="2" align="center">
+            <a href="#nowhere"  @click="update" class="btn btn-success">提交</a>
+        </td>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+<div th:replace="include/admin/adminFooter::html" ></div>
+</body>
+</html>
+
+
+
+
+
